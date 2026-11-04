@@ -1,0 +1,28 @@
+﻿  Engine.cpp
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Engine.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Game.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Engine.cpp' をコンパイルしています)
+  
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Time.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Engine.cpp' をコンパイルしています)
+  
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Input.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Engine.cpp' をコンパイルしています)
+  
+  Game.cpp
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Game.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Game.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Game.cpp' をコンパイルしています)
+  
+  Input.cpp
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Input.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Input.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'Input.cpp' をコンパイルしています)
+  
+  main.cpp
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\main.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Game.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル 'main.cpp' をコンパイルしています)
+  
+  コードを生成中...
+  Graduation_Project.vcxproj -> C:\Users\student\Desktop\Graduasion_project\Graduation_Project\x64\Debug\Graduation_Project.exe
