@@ -34,6 +34,15 @@
     <Filter Include="TIme">
       <UniqueIdentifier>{c37f09b0-572a-43e9-ac65-f7d3badfa710}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{19a7f7b3-2d6d-4808-beb7-56ce1e0ec44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{c99d552f-32eb-447f-8c53-1416fc894ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{29fc3c24-a0be-48fc-a80f-2422bf6b469d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,7 +61,10 @@
       <Filter>TIme</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +90,13 @@
       <Filter>TIme</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="IScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

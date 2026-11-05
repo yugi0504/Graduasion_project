@@ -6,47 +6,46 @@
 
 bool Engine::Initialize(Game* game, const WindowConfig& windowConfig,const EngineConfig& engineConfig)
 {
-    // ã‚²ãƒ¼ãƒ ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã¯åˆæœŸåŒ–ã—ãªã„
+    // ƒQ[ƒ€‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰Šú‰»‚µ‚È‚¢
     if (game == nullptr)
     {
         return false;
     }
 
-    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šãŒä¸æ­£ã®å ´åˆã¯åˆæœŸåŒ–ã—ãªã„
+    // ƒEƒBƒ“ƒhƒEİ’è‚ª•s³‚Ìê‡‚Í‰Šú‰»‚µ‚È‚¢
     if (!windowConfig.IsValid())
     {
         return false;
     }
 
-    // ã‚¨ãƒ³ã‚¸ãƒ³è¨­å®šãŒä¸æ­£ã®å ´åˆã¯åˆæœŸåŒ–ã—ãªã„
+    // ƒGƒ“ƒWƒ“İ’è‚ª•s³‚Ìê‡‚Í‰Šú‰»‚µ‚È‚¢
     if (!engineConfig.IsValid())
     {
         return false;
     }
 
     m_currentGame = game;
-    m_targetFPS = engineConfig.targetFPS;
 
-    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«è¨­å®š
+    // ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Éİ’è
     ChangeWindowMode(windowConfig.isWindowMode ? TRUE : FALSE);
 
-    // ã‚¦ã‚£ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
+    // ƒEƒBƒhƒEƒTƒCƒY‚ğ•ÏX
     SetGraphMode(windowConfig.width, windowConfig.height, 32);
 
-    // DxLibã®åˆæœŸåŒ–
+    // DxLib‚Ì‰Šú‰»
     if (DxLib_Init() == -1)
     {
         m_currentGame = nullptr;
         return false;
     }
 
-    // èƒŒæ™¯è‰²ã‚’è¨­å®š
+    // ”wŒiF‚ğİ’è
     SetBackgroundColor(windowConfig.backgroundR,windowConfig.backgroundG ,windowConfig.backgroundB );
 
-    // æ™‚é–“ç®¡ç†ã‚’åˆæœŸåŒ–
+    // ŠÔŠÇ—‚ğ‰Šú‰»
     Time::GetInstance().Initialize();
 
-    // ã‚²ãƒ¼ãƒ å›ºæœ‰ã®åˆæœŸåŒ–
+    // ƒQ[ƒ€ŒÅ—L‚Ì‰Šú‰»
     if (!m_currentGame->Initialize())
     {
         DxLib_End();
@@ -54,7 +53,12 @@ bool Engine::Initialize(Game* game, const WindowConfig& windowConfig,const Engin
         return false;
     }
 
-    // åˆæœŸåŒ–æˆåŠŸ
+    // Debug‚Ì‰Šú‰»
+	m_debug.Initialize();
+
+	m_targetFPS = engineConfig.targetFPS;
+
+    // ‰Šú‰»¬Œ÷
     m_isInitialized = true;
     m_isRunning = true;
 
@@ -68,53 +72,68 @@ void Engine::Run()
         return;
     }
 
-    // ç›®æ¨™ãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“(ãƒŸãƒªç§’)
+    // –Ú•WƒtƒŒ[ƒ€ŠÔ(ƒ~ƒŠ•b)
     const double targetFrameTime = 1000.0 / m_targetFPS;
 
     while (m_isRunning)
     {
-        // ãƒ•ãƒ¬ãƒ¼ãƒ é–‹å§‹æ™‚åˆ»ã‚’å–å¾—
+        // ƒtƒŒ[ƒ€ŠJn‚ğæ“¾
         const int frameStartTime = GetNowCount();
 
-        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†
+        // ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒW‚ğˆ—
         if (ProcessMessage() != 0)
         {
             m_isRunning = false;
             break;
         }
 
-        // å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
+        // “ü—Íó‘Ô‚ğXV
         Input::GetInstance().Update();
 
-        // Escapeã‚­ãƒ¼ã§çµ‚äº†
+		// F2ƒL[‚ÅƒfƒoƒbƒOî•ñ‚Ì•\¦/”ñ•\¦‚ğØ‚è‘Ö‚¦
+        if (Input::GetInstance().IsKeyTriggered(KeyCode::F2))
+        {
+			m_isDebugEnabled = !m_isDebugEnabled;
+			m_debug.SetEnabled(m_isDebugEnabled);
+        }
+        
+        // EscapeƒL[‚ÅI—¹
         if (Input::GetInstance().IsKeyTriggered(KeyCode::Escape))
         {
             m_isRunning = false;
             break;
         }
 
-        // æ™‚é–“æƒ…å ±ã‚’æ›´æ–°
+        // ŠÔî•ñ‚ğXV
         Time::GetInstance().Update();
 
-        // ç”»é¢ã‚’ã‚¯ãƒªã‚¢
+		const float deltaTime = Time::GetInstance().GetDeltaTime();
+
+        // Debugî•ñ‚ğXV
+        m_debug.Update(deltaTime);
+
+        // ‰æ–Ê‚ğƒNƒŠƒA
         ClearDrawScreen();
 
-        // ã‚²ãƒ¼ãƒ ã®æ›´æ–°å‡¦ç†
-        m_currentGame->Update(Time::GetInstance().GetDeltaTime());
+        // ƒQ[ƒ€‚ÌXVˆ—
+        m_currentGame->Update(deltaTime);
 
-        // ã‚²ãƒ¼ãƒ ã®æç”»å‡¦ç†
+        // ƒQ[ƒ€‚Ì•`‰æˆ—
         m_currentGame->Render();
 
-        // æç”»çµæœã‚’ç”»é¢ã«åæ˜ 
+		// ƒfƒoƒbƒOî•ñ‚Ì•`‰æ
+		m_debug.Render();
+
+        // •`‰æŒ‹‰Ê‚ğ‰æ–Ê‚É”½‰f
         ScreenFlip();
 
-        // ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†ã«ã‹ã‹ã£ãŸæ™‚é–“ã‚’å–å¾—
+        // ƒtƒŒ[ƒ€ˆ—‚É‚©‚©‚Á‚½ŠÔ‚ğæ“¾
         const int elapsedTime = GetNowCount() - frameStartTime;
 
-        // ç›®æ¨™æ™‚é–“ã¾ã§ã®æ®‹ã‚Šæ™‚é–“ã‚’è¨ˆç®—
+        // –Ú•WŠÔ‚Ü‚Å‚Ìc‚èŠÔ‚ğŒvZ
         const int waitTime = static_cast<int>(targetFrameTime - elapsedTime);
 
-        // å¿…è¦ãªå ´åˆã®ã¿å¾…æ©Ÿ
+        // •K—v‚Èê‡‚Ì‚İ‘Ò‹@
         if (waitTime > 0)
         {
             WaitTimer(waitTime);
@@ -124,7 +143,7 @@ void Engine::Run()
 
 void Engine::Finalize()
 {
-    // åˆæœŸåŒ–ã•ã‚Œã¦ãªã„å ´åˆã¯å‡¦ç†ã—ãªã„
+    // ‰Šú‰»‚³‚ê‚Ä‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
     if (!m_isInitialized)
     {
         return;
@@ -132,13 +151,18 @@ void Engine::Finalize()
 
     m_isRunning = false;
 
-    // ã‚²ãƒ¼ãƒ å›ºæœ‰ã®çµ‚äº†å‡¦ç†
+    // ƒQ[ƒ€ŒÅ—L‚ÌI—¹ˆ—
     if (m_currentGame != nullptr)
     {
         m_currentGame->Finalize();
         m_currentGame = nullptr;
     }
 
-    // DxLibã®çµ‚äº†
+    // Debug‚ÌI—¹ˆ—
+    m_debug.Finalize();
+
+    // DxLib‚ÌI—¹
     DxLib_End();
+
+	m_isInitialized = false;
 }

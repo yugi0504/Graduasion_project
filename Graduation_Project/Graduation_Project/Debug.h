@@ -4,37 +4,51 @@ class Debug
 public:
 	
 	/// <summary>
-	/// ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–
+	/// ƒfƒoƒbƒO‹@”\‚Ì‰Šú‰»
 	/// </summary>
 	void Initialize() noexcept;
 
 	/// <summary>
-	/// ãƒ‡ãƒãƒƒã‚°æƒ…å ±ã®æ›´æ–°
+	/// ƒfƒoƒbƒOî•ñ‚ÌXV
 	/// </summary>
-	void Update() noexcept;
+	void Update(float deltaTime) noexcept;
 
 	/// <summary>
-	/// ãƒ‡ãƒãƒƒã‚°æƒ…å ±ã®æç”»
+	/// ƒfƒoƒbƒOî•ñ‚Ì•`‰æ
 	/// </summary>
 	void Render() const;
 
 	/// <summary>
-	/// ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã®çµ‚äº†å‡¦ç†
+	/// ƒfƒoƒbƒO‹@”\‚ÌI—¹ˆ—
 	/// </summary>
 	void Finalize() noexcept;
 
 	/// <summary>
-	/// ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+	/// ƒfƒoƒbƒO•\¦‚Ì—LŒøE–³Œø‚ğØ‚è‘Ö‚¦‚é
 	/// </summary>
-	/// <param name="isEnabled">ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºãŒæœ‰åŠ¹ã‹ç„¡åŠ¹ã‹</param>
+	/// <param name="isEnabled">ƒfƒoƒbƒO•\¦‚ª—LŒø‚©–³Œø‚©</param>
 	void SetEnabled(bool isEnabled) noexcept;
 
 private:
+	void DrawFPS() const;
+	void DrawDeltaTime() const;
+
 	bool m_isEnabled = true;
 
-	// FPSè¨ˆæ¸¬ç”¨
+	// ƒfƒoƒbƒO•\¦İ’è
+	int m_textX = 20;
+	int m_textY = 50;
+	int m_lineSpacing = 20;
+
+	// ƒfƒoƒbƒO•¶šF
+	int m_textColor = 0;
+
+	// FPSŒv‘ª—p
 	int m_currentFPS = 0;
 	int m_frameCount = 0;
 	int m_fpsUpdateTime = 0;
+
+	// ŠÔî•ñ
+	float m_deltaTime = 0.0f;
 };
 

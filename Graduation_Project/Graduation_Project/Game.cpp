@@ -1,24 +1,47 @@
 #include "Game.h"
+#include "GameObject.h"
+
+#include <memory>
+#include <cassert>
+
 #include "DxLib.h"
 
 bool Game::Initialize()
 {
-    // ã‚²ãƒ¼ãƒ å›ºæœ‰ã®åˆæœŸåŒ–å‡¦ç†
+    // eƒIƒuƒWƒFƒNƒg‚Ì¶¬
+    GameObject player("Player");
+
+    // ŽqƒIƒuƒWƒFƒNƒg‚ð2‚Â’Ç‰Á
+    player.AddChild(std::make_unique<GameObject>("Weapon"));
+    player.AddChild(std::make_unique<GameObject>("Camera"));
+
+    // ŽqƒIƒuƒWƒFƒNƒg”‚ðŠm”F
+    assert(player.GetChildCount() == 2);
+
+    // ŽqƒIƒuƒWƒFƒNƒg‚ð1‚Âíœ
+    GameObject* weapon = player.GetChildren()[0].get();
+
+    assert(player.RemoveChild(weapon) == true);
+
+    // íœŒã‚ÌŽqƒIƒuƒWƒFƒNƒg”‚ðŠm”F
+    assert(player.GetChildCount() == 1);
+
+    // ƒQ[ƒ€ŒÅ—L‚Ì‰Šú‰»ˆ—
     return true;
 }
 
 void Game::Update(float deltaTime)
 {
-    // ã‚²ãƒ¼ãƒ å†…ã®æ›´æ–°å‡¦ç†ã‚’ã“ã“ã«å®Ÿè£…ã™ã‚‹
+    // ƒQ[ƒ€“à‚ÌXVˆ—‚ð‚±‚±‚ÉŽÀ‘•‚·‚é
 }
 
 void Game::Render()
 {
-    // ã‚²ãƒ¼ãƒ ç”»é¢ã®æç”»å‡¦ç†
+    // ƒQ[ƒ€‰æ–Ê‚Ì•`‰æˆ—
     DrawString(20,20,"YEngine Start!",GetColor(255, 255, 255));
 }
 
 void Game::Finalize()
 {
-    // ã‚²ãƒ¼ãƒ å›ºæœ‰ã®çµ‚äº†å‡¦ç†
+    // ƒQ[ƒ€ŒÅ—L‚ÌI—¹ˆ—
 }

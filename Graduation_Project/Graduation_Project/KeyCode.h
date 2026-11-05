@@ -5,6 +5,8 @@ enum class KeyCode
     Escape,
     Space,
 
+    F2,
+
     W,
     A,
     S,

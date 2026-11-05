@@ -1,7 +1,7 @@
 #include "Debug.h"
 #include "DxLib.h"
 
-// ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–
+// ƒfƒoƒbƒO‹@”\‚Ì‰Šú‰»
 void Debug::Initialize() noexcept
 {
     m_isEnabled = true;
@@ -9,38 +9,51 @@ void Debug::Initialize() noexcept
     m_currentFPS = 0;
     m_frameCount = 0;
     m_fpsUpdateTime = GetNowCount();
+
+	// ƒfƒoƒbƒO•\¦İ’è‚Ì‰Šú‰»
+    m_textX = 20;
+	m_textY = 50;
+	m_lineSpacing = 20;
+
+	// ƒfƒoƒbƒO•¶šF‚ğ‰©F‚Éİ’è
+	m_textColor = GetColor(255, 255, 0);
+
+	// ŠÔî•ñ‚Ì‰Šú‰»
+	m_deltaTime = 0.0f;
 }
 
-// ãƒ‡ãƒãƒƒã‚°æƒ…å ±ã®æ›´æ–°
-void Debug::Update() noexcept
+// ƒfƒoƒbƒOî•ñ‚ÌXV
+void Debug::Update(float deltaTime) noexcept
 {
     if (!m_isEnabled)
     {
         return;
     }
 
-    // ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’åŠ ç®—
+    m_deltaTime = deltaTime;
+
+    // ƒtƒŒ[ƒ€”‚ğ‰ÁZ
     ++m_frameCount;
 
-    // ç¾åœ¨æ™‚åˆ»ã‚’å–å¾—
+    // Œ»İ‚ğæ“¾
     const int currentTime = GetNowCount();
 
-    // FPSè¨ˆæ¸¬æœŸé–“
+    // FPSŒv‘ªŠúŠÔ
     const int fpsElapsedTime = currentTime - m_fpsUpdateTime;
 
-    // 1ç§’ä»¥ä¸ŠçµŒéã—ãŸå ´åˆ
+    // 1•bˆÈãŒo‰ß‚µ‚½ê‡
     if (fpsElapsedTime >= 1000)
     {
-        // FPSã‚’è¨ˆç®—
+        // FPS‚ğŒvZ
         m_currentFPS = static_cast<int>( m_frameCount * 1000.0 / fpsElapsedTime);
 
-        // è¨ˆæ¸¬æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
+        // Œv‘ªî•ñ‚ğƒŠƒZƒbƒg
         m_frameCount = 0;
         m_fpsUpdateTime = currentTime;
     }
 }
 
-// ãƒ‡ãƒãƒƒã‚°æƒ…å ±ã®æç”»
+// ƒfƒoƒbƒOî•ñ‚Ì•`‰æ
 void Debug::Render() const
 {
     if (!m_isEnabled)
@@ -48,10 +61,14 @@ void Debug::Render() const
         return;
     }
 
-    DrawFormatString(20,50,GetColor(255, 255, 0), "FPS: %d",m_currentFPS);
+	// FPS‚Ì•`‰æ
+	DrawFPS();
+
+	// DeltaTime‚Ì•`‰æ
+    DrawDeltaTime();
 }
 
-// ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã®çµ‚äº†å‡¦ç†
+// ƒfƒoƒbƒO‹@”\‚ÌI—¹ˆ—
 void Debug::Finalize() noexcept
 {
     m_currentFPS = 0;
@@ -59,8 +76,19 @@ void Debug::Finalize() noexcept
     m_fpsUpdateTime = 0;
 }
 
-// ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+// ƒfƒoƒbƒO•\¦‚Ì—LŒøE–³Œø‚ğØ‚è‘Ö‚¦‚é
 void Debug::SetEnabled(bool isEnabled) noexcept
 {
     m_isEnabled = isEnabled;
+}
+
+// ƒfƒoƒbƒOî•ñ‚Ì•`‰æiFPS•\¦j
+void Debug::DrawFPS() const
+{
+	DrawFormatString(m_textX, m_textY, m_textColor, "FPS: %d", m_currentFPS);
+}
+
+void Debug::DrawDeltaTime() const
+{
+	DrawFormatString(m_textX, m_textY + m_lineSpacing, m_textColor, "DeltaTime: %.4f sec", m_deltaTime);
 }

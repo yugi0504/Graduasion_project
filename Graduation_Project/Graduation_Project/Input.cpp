@@ -9,13 +9,13 @@ Input& Input::GetInstance() noexcept
 
 void Input::Update() noexcept
 {
-    // å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…¥åŠ›çŠ¶æ…‹ã‚’ä¿å­˜
+    // ‘OƒtƒŒ[ƒ€‚Ì“ü—Íó‘Ô‚ğ•Û‘¶
     previousKeyState = currentKeyState;
 
-    // ç¾åœ¨ã®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—
+    // Œ»İ‚ÌƒL[ƒ{[ƒh“ü—Íó‘Ô‚ğæ“¾
     const int result = GetHitKeyStateAll(currentKeyState.data());
 
-    // å…¥åŠ›å–å¾—ã«å¤±æ•—ã—ãŸå ´åˆã¯ã€å…¥åŠ›çŠ¶æ…‹ã‚’åˆæœŸåŒ–
+    // “ü—Íæ“¾‚É¸”s‚µ‚½ê‡‚ÍA“ü—Íó‘Ô‚ğ‰Šú‰»
     if (result == -1)
     {
         currentKeyState.fill(0);
@@ -28,6 +28,8 @@ int Input::ConvertKeyCode(KeyCode keyCode) const noexcept
     {
     case KeyCode::Escape:   return KEY_INPUT_ESCAPE;
     case KeyCode::Space:    return KEY_INPUT_SPACE;
+
+	case KeyCode::F2:       return KEY_INPUT_F2;
 
     case KeyCode::W:        return KEY_INPUT_W;
     case KeyCode::A:        return KEY_INPUT_A;

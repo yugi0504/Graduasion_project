@@ -1,6 +1,7 @@
 #pragma once
 #include "WindowConfig.h"
 #include "EngineConfig.h"
+#include "Debug.h"
 
 class Game;
 
@@ -8,7 +9,7 @@ class Engine
 {
 public:
 	/// <summary>
-	/// ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
+	/// ƒGƒ“ƒWƒ“‚Ì‰Šú‰»
 	/// </summary>
 	/// <param name="game"></param>
 	/// <param name="windowConfig"></param>
@@ -16,20 +17,25 @@ public:
 	bool Initialize(Game* game, const WindowConfig& windowConfig,const EngineConfig& engineConfig);
 
 	/// <summary>
-	/// ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—ã®å®Ÿè¡Œ
+	/// ƒQ[ƒ€ƒ‹[ƒv‚ÌÀs
 	/// </summary>
 	void Run();
 	
 	/// <summary>
-	///  ã‚¨ãƒ³ã‚¸ãƒ³ã®çµ‚äº†å‡¦ç†
+	///  ƒGƒ“ƒWƒ“‚ÌI—¹ˆ—
 	/// </summary>
 	void Finalize();
 
 private:
 	bool m_isRunning = false;
 	bool m_isInitialized = false;
+	bool m_isDebugEnabled = true;
 
 	int m_targetFPS = 60;
 
+	// ƒfƒoƒbƒO—p‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+	Debug m_debug;
+
+	// Œ»İÀs’†‚ÌƒQ[ƒ€‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
 	Game* m_currentGame = nullptr;
 };

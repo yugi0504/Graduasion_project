@@ -5,7 +5,8 @@
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\student\\desktop\\graduasion_project\\graduation_project\\graduation_project\\windowconfig.h",
-            "c:\\users\\student\\desktop\\graduasion_project\\graduation_project\\graduation_project\\engineconfig.h"
+            "c:\\users\\student\\desktop\\graduasion_project\\graduation_project\\graduation_project\\engineconfig.h",
+            "c:\\users\\student\\desktop\\graduasion_project\\graduation_project\\graduation_project\\debug.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
