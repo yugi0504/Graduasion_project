@@ -66,6 +66,9 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowConfig.h">
@@ -96,6 +99,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="IScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>

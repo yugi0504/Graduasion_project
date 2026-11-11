@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "GameObject.h"
+#include "Scene.h"
 
 #include <memory>
 #include <cassert>
@@ -8,23 +9,31 @@
 
 bool Game::Initialize()
 {
-    // 親オブジェクトの生成
-    GameObject player("Player");
+    Scene scene;
 
-    // 子オブジェクトを2つ追加
-    player.AddChild(std::make_unique<GameObject>("Weapon"));
-    player.AddChild(std::make_unique<GameObject>("Camera"));
+    auto player = std::make_unique<GameObject>("Player");
 
-    // 子オブジェクト数を確認
-    assert(player.GetChildCount() == 2);
+    GameObject* addedPlayer = scene.AddGameObject(std::move(player));
 
-    // 子オブジェクトを1つ削除
-    GameObject* weapon = player.GetChildren()[0].get();
+    assert(addedPlayer != nullptr);
 
-    assert(player.RemoveChild(weapon) == true);
+    assert(player == nullptr);
 
-    // 削除後の子オブジェクト数を確認
-    assert(player.GetChildCount() == 1);
+    // 名前で検索
+    GameObject* foundPlayer = scene.FindGameObject("Player");
+
+    assert(foundPlayer == addedPlayer);
+
+    // 存在しない名前を検索
+    assert(scene.FindGameObject("Enemy") == nullptr);
+
+    // GameObjectを削除
+    bool removed = scene.RemoveGameObject(addedPlayer);
+
+    assert(removed);
+
+    // 削除後に検索できないことを確認
+    assert(scene.FindGameObject("Player") == nullptr);
 
     // ゲーム固有の初期化処理
     return true;
