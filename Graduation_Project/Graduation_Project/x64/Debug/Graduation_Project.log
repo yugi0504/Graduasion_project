@@ -1,5 +1,2 @@
-﻿  Game.cpp
-C:\Users\student\Desktop\Graduasion_project\Graduation_Project\Graduation_Project\Game.h(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-  (ソース ファイル 'Game.cpp' をコンパイルしています)
-  
-  Graduation_Project.vcxproj -> C:\Users\student\Desktop\Graduasion_project\Graduation_Project\x64\Debug\Graduation_Project.exe
+﻿  Vector3.cpp
+  Graduation_Project.vcxproj -> C:\Users\student\Downloads\Graduasion_project\Graduation_Project\x64\Debug\Graduation_Project.exe
