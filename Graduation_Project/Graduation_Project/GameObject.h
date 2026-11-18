@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 
+#include "Matrix4x4.h"
 
 class GameObject
 {
@@ -69,6 +70,8 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	size_t GetChildCount() const noexcept;
+
+	Matrix4x4 GetWorldMatrix() const;
 
 private:
 	// オブジェクト名

@@ -118,3 +118,8 @@ size_t GameObject::GetChildCount() const noexcept
 {
 	return m_children.size();
 }
+
+Matrix4x4 GameObject::GetWorldMatrix() const
+{
+	return Matrix4x4::CreateTransform(m_trans)
+}
